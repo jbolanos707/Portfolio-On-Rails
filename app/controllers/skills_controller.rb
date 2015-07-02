@@ -6,6 +6,7 @@ class SkillsController < ApplicationController
 
   def show
     @skill = Skill.find(params[:id])
+    # @project = @skill.projects.new
     render :show
   end
 
