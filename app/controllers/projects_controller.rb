@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
   end
-  
+
   def new
     @skill = Skill.find(params[:skill_id])
     @project = @skill.projects.new
@@ -26,6 +26,16 @@ class ProjectsController < ApplicationController
   def edit
     @skill = Skill.find(params[:skill_id])
     @project = Project.find(params[:id])
+  end
+
+  def update
+    @skill = Skill.find(params[:skill_id])
+    @project = @skill.projects.find(params[:id])
+    if @project.update(project_params)
+      redirect_to skill_path(@project.skill)
+    else
+      render :edit
+    end
   end
 
   private
