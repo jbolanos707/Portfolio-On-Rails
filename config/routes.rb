@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "skills#index"
+  root to: "skills#index"
 
   resources :skills do
-    resources :projects
+    resources :projects, :except => [:show, :index]
   end
 end

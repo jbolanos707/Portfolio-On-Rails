@@ -1,4 +1,4 @@
-<%= render('layouts/errors', :object => @project) %>
+<%= render 'layouts/errors', :object => @project %>
 
 <%= form_for [@skill, @project] do |f| %>
   <%= f.label :name %>
@@ -6,6 +6,6 @@
   <%= f.label :description %>
   <%= f.text_field :description %>
   <%= f.label :link %>
-  <%= f.text_field :link %>
+  <%= f.text_field :link, placeholder: "www.github.com/username/project" %>
   <p><%= f.submit %></p>
 <% end %>

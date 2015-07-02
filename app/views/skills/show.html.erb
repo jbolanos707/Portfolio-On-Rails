@@ -1,39 +1,41 @@
+<% content_for(:title, "Skills | Portfolio") %>
+
 <p><%= @skill.language %><p>
-
-<hr>
-
-<span class="small grayed">Description:</span>
 <p><%= @skill.description %></p>
+
+
+  <% if @skill.projects.any? %>
+    <p>Projects:</p>
+
+    <ul>
+      <% @skill.projects.each do |project| %>
+        <li>
+          <p><%= link_to project.name %></p>
+          <p><%= project.link %></p>
+          <p><%= project.description %></p>
+          <%= link_to "Edit Skill", edit_skill_project_path(@skill, project) %> |
+          <%= link_to "Delete Skill", skill_project_path(@skill, project),
+                                   :data => {:confirm => "Are you sure?",
+                                   :method => "delete"},
+                                   :class => "btn btn-danger" %>
+        </li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>No Projects Available</p>
+  <% end %>
+
+  <p><%= link_to "Add A Project", new_skill_project_path(@skill), class: " btn btn-sm" %>
 
 <hr>
 
 <p class='upper-right'>
-  <%= link_to "Edit", edit_skill_path %>
-  <%= link_to "Delete", skill_path(@skill),
+  <%= link_to "Edit Skill", edit_skill_path(@skill) %>
+  <%= link_to "Delete Skill", skill_path(@skill),
                         :data => {:confirm => "You sure?",
-                                  :method => "delete"}, class: "text-danger" %>
+                        :method => "delete"},
+                        class: "btn btn-danger" %>
 </p>
 
-<hr>
-
-<% if @skill.projects.any? %>
-  <p>Projects:</p>
-
-  <ul>
-    <% @skill.projects.each do |project| %>
-      <li>
-        <%= project.name %>
-        <%= project.link %>
-        <%= project.description %> |
-        <%= link_to "Edit", edit_skill_project_path(@skill, project) %> |
-        <%= link_to "Delete", skill_project_path(@skill, project),
-                                 :data => {:confirm => "Are you sure?",
-                                                :method => "delete"} %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No Projects Available</p>
-<% end %>
-
-<p><%= link_to "Return to Homepage", skills_path %></p>
+<p><%= link_to "Homepage", skills_path, class: "btn btn-default" %></p>

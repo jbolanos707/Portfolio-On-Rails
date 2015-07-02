@@ -1,3 +1,5 @@
-<p>New project for <%= @skill.language %></p>
+<% content_for(:title, "New Project | Skill") %>
 
-<%= render 'form' %>
+<p>Add a Project</p>
+
+<%= render('form') %>
