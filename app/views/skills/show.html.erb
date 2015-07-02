@@ -1,3 +1,19 @@
 <p><%= @skill.language %><p>
 
-<p><%= link_to "Return to Homepage", skills_path %></p>  
+<hr>
+
+<span class="small grayed">Description:</span>
+<p><%= @skill.description %></p>
+
+<hr>
+
+<p class='upper-right'>
+  <%= link_to "Edit", edit_skill_path %>
+  <%= link_to "Delete", skill_path(@skill),
+                        :data => {:confirm => "You sure?",
+                                  :method => "delete"}, class: "text-danger" %>
+</p>
+
+<hr>
+
+<p><%= link_to "Return to Homepage", skills_path %></p>
